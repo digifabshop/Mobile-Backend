@@ -12,20 +12,18 @@
 
   <div id="container">
 
-    <div id="top-bar">
-      <div id="digifabshop-logo">
-        <a href="#" title=""><img src="images/logo.svg" alt="" /></a>
-      </div>
+    <a id="digifabshop-logo" class="hide-on-load" href="#" title=""><img src="images/logo.svg" alt="" width="165" /></a>
+    <div id="top-bar" class="hide-on-load">
       <nav>
         <ul>
-          <li id="explore"><a href="#" title=""><img src="images/explore.svg" alt="" /></a></li>
-          <li id="map"><a href="#" title=""><img src="images/map.svg" alt="" /></a></li>
-          <li id="hamburger"><a href="#" title=""><img src="images/hamburger.svg" alt="" /></a></li>
+          <li id="explore"><a href="#" title=""><img src="images/explore.svg" width="22" alt="" /></a></li>
+          <li id="map"><a href="#" title=""><img src="images/map.svg" width="22" alt="" /></a></li>
+          <li id="hamburger"><a href="#" title=""><img src="images/hamburger.svg" width="19" alt="" /></a></li>
         </ul>
       </nav>
     </div>
 
-    <div id="menu">
+    <div id="menu" class="hide">
       <a id="menu-close"><img src="images/close.svg" alt="" /></a>
 
       <nav>
@@ -54,15 +52,14 @@
     </div>
 
     <div id="flickity">
-      <div class="slide">
-        <img class="slide-image" src="images/1.jpg" alt="" />
-        <div class="slide-location">Project Location: Washington, D.C.</div>
+      <div class="slide" style="background-image:url(images/1.jpg)">
+        <div class="slide-location hide-on-load">Project Location: Washington, D.C.</div>
       </div>
     </div>
 
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="home_with_menu.js"></script>
 
 </body>
