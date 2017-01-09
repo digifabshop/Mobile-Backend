@@ -1,4 +1,4 @@
-/* CSS RESET */
+/* CSS RESET - Jack Turner style, few enough rules you can grasp it in your mindbrain */
 * {
     margin:             0;
     padding:            0;
@@ -15,9 +15,6 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
     box-sizing:         border-box;
-    color: #111;
-    font-size: 1em;
-    line-height: 1.4;
     }
 
 *, *:before, *:after {
@@ -25,6 +22,7 @@ html {
     }
 
 /* CUSTOM FONTS */
+/* Obviously far more than we’ll use once this is live, but this sure is handy for development purposes */
 @font-face {font-family: 'DistrictThin';src: url('../webfonts/1CE0F0_4_0.eot');src: url('../webfonts/1CE0F0_4_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/1CE0F0_4_0.woff') format('woff'),url('../webfonts/1CE0F0_4_0.ttf') format('truetype');} 
 @font-face {font-family: 'DistrictThinItalic';src: url('../webfonts/1CE0F0_8_0.eot');src: url('../webfonts/1CE0F0_8_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/1CE0F0_8_0.woff') format('woff'),url('../webfonts/1CE0F0_8_0.ttf') format('truetype');} 
 @font-face {font-family: 'DistrictLight';src: url('../webfonts/1CE0F0_7_0.eot');src: url('../webfonts/1CE0F0_7_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/1CE0F0_7_0.woff') format('woff'),url('../webfonts/1CE0F0_7_0.ttf') format('truetype');} 
@@ -46,6 +44,7 @@ body {
     font-weight:        300;
     font-size:          16px;
     color: 							#FFF;
+    line-height: 1.4;
     }
 
 a { 
@@ -57,7 +56,7 @@ li {
     list-style:         none;
     }
 
-#digifabshop-logo {
+#digifabshop-logo {			/* this is outside of the top bar so that it can remain visible when the top bar hides */
 		position:						absolute;
 		z-index: 						20;
 		top:								5px;
@@ -68,7 +67,7 @@ li {
     font-size:          31px;
 		}
 
-#top-bar {
+#top-bar {							/* all of the stuff at the top of the screen EXCEPT the digifab logo */
 		position:						absolute;
 		z-index:						1;
 		top:								0;
@@ -78,23 +77,23 @@ li {
 		background: 				linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0) 100%);
 		}
 
-#top-bar nav {
+#top-bar nav {					/* links in the top right of the screen */
 		position:						absolute;
 		top:								0;
 		right:							0;
 		}
 
-#top-bar nav ul {
+#top-bar nav ul {				/* making these links right-align */
 		display: 						flex;
 		align-items: 				flex-end;
 		}
 
-#top-bar nav ul a {
+#top-bar nav ul a { 		/* giving them enough padding to space them out and increase click-targets */
 		display:						block;
 		padding:						8px;
 		}
 
-#menu {
+#menu {									/* TODO: this should probably get a more dynamic entry/exit animation */
 		background-color: 	rgba(0,0,0, 0.80);
 		position:						absolute;
 		z-index:  					10;
@@ -117,20 +116,20 @@ li {
 		right:							9px;
 		}
 
-#menu nav a {
+#menu nav a {						/* links to different pages on the site */
 		display: 						block;
 		border:							1px solid rgba(255,255,255, 0.5);
 		padding:						3px 0 2px;
 		margin:							1px 22px;
 		}
 
-#social-links ul {
+#social-links ul {			/* horizontal row of social links, should scale to handle more OR less */
 		display:						flex;
 		justify-content: 		space-around;
 		margin: 						60px 40px 30px;
 		}
 
-#contact-info p {
+#contact-info p {				/* these are the blocks of information about contacting/locating digifab */
 		margin:							20px;
 		}
 
