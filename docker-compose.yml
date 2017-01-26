@@ -1,0 +1,21 @@
+# elastic:
+#   image: elasticsearch
+#   ports:
+#     - 9200:9200
+api:
+  build: .
+  links:
+    - mysql
+    # - elastic
+  ports:
+    - 80:80
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/resolv.conf:/etc/resolv.conf:ro
+    - ./api:/var/www/html
+mysql:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: letmeindude
+  ports:
+    - 3306:3306
