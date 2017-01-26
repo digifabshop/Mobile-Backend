@@ -24,6 +24,8 @@ $(function () {
 	  e.preventDefault()
 	} )
 
-	$('#completed-images').flickity()
+	$(window).on('load', function() {
+		$('#completed-images').flickity()
+	})
 
 })
