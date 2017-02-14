@@ -1,0 +1,20 @@
+<div class="container">
+
+  <h1>Edit Post</h1>
+  <hr>
+
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input ng-model="posts_edit.post.title" type="text" class="form-control" id="title" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="height">Description</label>
+      <div text-angular ng-model="posts_edit.post.description"></div>
+      <!-- <textarea class="form-control">{{posts_edit.post.description}}</textarea> -->
+    </div>
+    <button ng-click="posts_edit.save()" type="submit" class="btn btn-primary">Save</button>
+    <button ng-click="posts_edit.remove()" type="submit" class="btn btn-danger">Delete</button>
+  </form>
+
+</div>

@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-default pull-right" ui-sref="admin.assets_edit">Add Asset</button>
+
+<h1>Assets</h1>
+<hr>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="asset in assets.assets">{{asset.description}} <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.assets_edit({ id: asset.id })">Edit</button></li>
+</ul>

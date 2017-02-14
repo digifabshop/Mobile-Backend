@@ -55,7 +55,12 @@ Router::scope('/', function (RouteBuilder $routes) {
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $routes->resources('Assets');
+    $routes->resources('AssetTypes');
+    $routes->resources('Clients');
     $routes->resources('Photos');
+    $routes->resources('Posts');
+    $routes->resources('Projects');
 
     /**
      * Connect catchall routes for all controllers.

@@ -1,7 +1,13 @@
 <div class="container">
 
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="photo in main.photos">{{photo.name}}</li>
-  </ul>
+  <div class="btn-group pull-right" role="group" aria-label="...">
+    <button type="button" class="btn btn-default" ui-sref="home.menu">Menu</button>
+    <button type="button" class="btn btn-default" ui-sref="home.explorer">Explorer</button>
+    <button type="button" class="btn btn-default" ui-sref="home.map">Map</button>
+  </div>
+
+  <h1>digifabshop</h1>
+
+  <div ui-view></div>
 
 </div>

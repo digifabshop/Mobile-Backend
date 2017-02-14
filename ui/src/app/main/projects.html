@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-default pull-right" ui-sref="admin.projects_edit">Add Project</button>
+
+<h1>Projects</h1>
+<hr>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="project in projects.projects">{{project.name}} <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.projects_edit({ id: project.id })">Edit</button></li>
+</ul>

@@ -1,0 +1,32 @@
+<div class="container">
+
+  <h1>Edit Project</h1>
+  <hr>
+
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input ng-model="projects_edit.project.name" type="text" class="form-control" id="name" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="name">Client</label>
+      <select ng-model="projects_edit.project.client_id" class="form-control" ng-options="client.id as client.name for client in projects_edit.clients">
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="name">Address</label>
+      <input ng-model="projects_edit.project.address" type="text" class="form-control" id="name" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="name">Latitude</label>
+      <input ng-model="projects_edit.project.latitude" type="text" class="form-control" id="name" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="name">Longitude</label>
+      <input ng-model="projects_edit.project.longitude" type="text" class="form-control" id="name" placeholder="">
+    </div>
+    <button ng-click="projects_edit.save()" type="submit" class="btn btn-primary">Save</button>
+    <button ng-click="projects_edit.remove()" type="submit" class="btn btn-danger">Delete</button>
+  </form>
+
+</div>

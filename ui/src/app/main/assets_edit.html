@@ -1,0 +1,49 @@
+<div class="container">
+
+  <h1>Edit Asset</h1>
+  <hr>
+
+  <form>
+    <div class="form-group">
+      <label for="type">Project</label>
+      <select ng-model="assets_edit.asset.project_id" class="form-control" ng-options="project.id as project.name for project in assets_edit.projects">
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="type">Type</label>
+      <select ng-model="assets_edit.asset.asset_type_id" class="form-control" ng-options="asset_type.id as asset_type.name for asset_type in assets_edit.asset_types">
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input ng-model="assets_edit.asset.description" type="text" class="form-control" id="description" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="height">Height</label>
+      <input ng-model="assets_edit.asset.height" type="text" class="form-control" id="height" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="width">Width</label>
+      <input ng-model="assets_edit.asset.width" type="text" class="form-control" id="width" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="credit_name">Credit Name</label>
+      <input ng-model="assets_edit.asset.credit_name" type="text" class="form-control" id="credit_name" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="credit_url">Credit URL</label>
+      <input ng-model="assets_edit.asset.credit_url" type="text" class="form-control" id="credit_url" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="in_progress">In Progress</label>
+      <select class="form-control" ng-model="assets_edit.asset.in_progress" ng-options="bool.id as bool.name for bool in assets_edit.boolOptions"></select>
+    </div>
+    <div class="form-group">
+      <label for="visible">Visible</label>
+      <select class="form-control" ng-model="assets_edit.asset.visible" ng-options="bool.id as bool.name for bool in assets_edit.boolOptions"></select>
+    </div>
+    <button ng-click="assets_edit.save()" type="submit" class="btn btn-primary">Save</button>
+    <button ng-click="assets_edit.remove()" type="submit" class="btn btn-danger">Delete</button>
+  </form>
+
+</div>

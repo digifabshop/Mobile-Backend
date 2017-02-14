@@ -3,20 +3,20 @@
 
   angular
     .module('ui')
-    .controller('MainController', MainController);
+    .controller('AssetsController', AssetsController);
 
   /** @ngInject */
-  function MainController(Restangular) {
+  function AssetsController(Restangular) {
 
     var vm = this;
 
-    Restangular.all('photos').getList().then(function(photos){
-      vm.photos = photos;
+  Restangular.all('assets').getList().then(function(assets){
+      vm.assets = assets;
     });
 
     vm.save = function() {
       Restangular.all('assets').post($scope.asset).then(function(res){
-        alert("saved!");
+        // nada
       });
     }
 
