@@ -33,6 +33,12 @@
         controller: 'MapsController',
         controllerAs: 'map'
       })
+      .state('home.project', {
+        url: '/project/:id',
+        templateUrl: 'app/main/project.html',
+        controller: 'ProjectController',
+        controllerAs: 'project'
+      })
       .state('admin', {
         url: '/admin',
         templateUrl: 'app/main/admin.html',

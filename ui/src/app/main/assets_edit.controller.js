@@ -6,11 +6,28 @@
     .controller('AssetsEditController', AssetsEditController);
 
   /** @ngInject */
-  function AssetsEditController($state, Restangular) {
+  function AssetsEditController($state, Restangular, FileUploader) {
 
     var vm = this;
 
     vm.asset = {};
+
+    vm.uploader = new FileUploader({
+      autoUpload: true,
+      url: 'http://localhost/assets/upload',
+      headers: {
+        accept: 'application/json'
+      }
+    });
+
+    // vm.uploader.onAfterAddingFile = function(item) {
+    //   // debugger;
+    // }
+
+    vm.uploader.onSuccessItem = function(item, response) {
+      vm.uploaded = true;
+      vm.asset.url = response.url;
+    }
 
     vm.boolOptions = [{ id: false, name: 'No'}, { id: true, name: 'Yes' }];
 
@@ -37,6 +54,7 @@
     }
 
     vm.save = function() {
+      debugger;
       if (!('id' in vm.asset)) {
         Restangular.all('assets').post(vm.asset).then(function(res){
           $state.go('admin.assets');
