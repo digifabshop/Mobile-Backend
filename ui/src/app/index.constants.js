@@ -7,7 +7,7 @@
     .constant('malarkey', malarkey)
     .constant('moment', moment)
     .constant('config', {
-      api: 'http://localhost/api',
+      api: window.location.origin + '/api',
       url: function(path) {
         return this.api + path
       }
