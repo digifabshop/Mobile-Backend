@@ -6,7 +6,7 @@
   .controller('ProjectController', ProjectController);
 
   /** @ngInject */
-  function ProjectController($state, Restangular) {
+  function ProjectController($state, config, Restangular) {
 
     var vm = this;
 
@@ -14,6 +14,9 @@
       vm.project = project;
       Restangular.all('assets', $state.params.id).getList({ project_id: vm.project.id }).then(function(assets){
         vm.assets = assets;
+        vm.assets.forEach(function(asset){
+          asset.url = config.url(asset.url);
+        });
       });
     });
 

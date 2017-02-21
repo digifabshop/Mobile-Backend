@@ -6,9 +6,9 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock(Restangular) {
+  function runBlock(Restangular, config) {
 
-    Restangular.setBaseUrl('http://localhost');
+    Restangular.setBaseUrl(config.api);
 
     var headers = {
       // Authorization: 'Bearer ' + User.token,

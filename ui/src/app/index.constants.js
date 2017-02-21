@@ -5,6 +5,12 @@
   angular
     .module('ui')
     .constant('malarkey', malarkey)
-    .constant('moment', moment);
+    .constant('moment', moment)
+    .constant('config', {
+      api: 'http://localhost',
+      url: function(path) {
+        return this.api + path
+      }
+    });
 
 })();

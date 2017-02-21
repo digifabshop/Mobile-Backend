@@ -6,7 +6,7 @@
     .controller('AssetsEditController', AssetsEditController);
 
   /** @ngInject */
-  function AssetsEditController($state, Restangular, FileUploader) {
+  function AssetsEditController($state, config, Restangular, FileUploader) {
 
     var vm = this;
 
@@ -14,7 +14,7 @@
 
     vm.uploader = new FileUploader({
       autoUpload: true,
-      url: 'http://localhost/assets/upload',
+      url: config.api + '/assets/upload',
       headers: {
         accept: 'application/json'
       }
@@ -26,7 +26,7 @@
 
     vm.uploader.onSuccessItem = function(item, response) {
       vm.uploaded = true;
-      vm.asset.url = response.url;
+      vm.asset.url = config.url(response.url);
     }
 
     vm.boolOptions = [{ id: false, name: 'No'}, { id: true, name: 'Yes' }];
@@ -34,6 +34,7 @@
     if ($state.params.id) {
       Restangular.one('assets', $state.params.id).get().then(function(asset){
         vm.asset = asset;
+        vm.asset.url = config.url(vm.asset.url);
       });
     }
 
@@ -54,7 +55,6 @@
     }
 
     vm.save = function() {
-      debugger;
       if (!('id' in vm.asset)) {
         Restangular.all('assets').post(vm.asset).then(function(res){
           $state.go('admin.assets');
