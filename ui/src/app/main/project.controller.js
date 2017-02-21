@@ -15,7 +15,7 @@
       Restangular.all('assets', $state.params.id).getList({ project_id: vm.project.id }).then(function(assets){
         vm.assets = assets;
         vm.assets.forEach(function(asset){
-          asset.url = config.url(asset.url);
+          asset.absUrl = config.url(asset.url);
         });
       });
     });

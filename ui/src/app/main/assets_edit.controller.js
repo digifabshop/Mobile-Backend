@@ -20,13 +20,10 @@
       }
     });
 
-    // vm.uploader.onAfterAddingFile = function(item) {
-    //   // debugger;
-    // }
-
     vm.uploader.onSuccessItem = function(item, response) {
       vm.uploaded = true;
-      vm.asset.url = config.url(response.url);
+      vm.asset.url = response.url;
+      vm.asset.absUrl = config.url(response.url);
     }
 
     vm.boolOptions = [{ id: false, name: 'No'}, { id: true, name: 'Yes' }];
@@ -34,7 +31,7 @@
     if ($state.params.id) {
       Restangular.one('assets', $state.params.id).get().then(function(asset){
         vm.asset = asset;
-        vm.asset.url = config.url(vm.asset.url);
+        vm.asset.absUrl = config.url(vm.asset.url);
       });
     }
 
