@@ -2,6 +2,10 @@
 #   image: elasticsearch
 #   ports:
 #     - 9200:9200
+# imageproxy:
+#   image: willnorris/imageproxy
+#   ports:
+#     - 8080:8080
 api:
   build: .
   links:
@@ -12,7 +16,8 @@ api:
   volumes:
     - /etc/localtime:/etc/localtime:ro
     - /etc/resolv.conf:/etc/resolv.conf:ro
-    - ./api:/var/www/html
+    - ./ui/dist:/var/www/html
+    - ./api:/var/www/html/api
 mysql:
   image: mysql:latest
   environment:
