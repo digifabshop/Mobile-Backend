@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h1>Edit Category</h1>
+  <hr>
+
+  <form>
+    <div class="form-group">
+      <label for="description">Name</label>
+      <input ng-model="categories_edit.category.name" type="text" class="form-control" id="description" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="description">Parent</label>
+      <input ng-model="categories_edit.category.parent_id" type="text" class="form-control" id="description" placeholder="">
+    </div>
+    <button ng-click="categories_edit.save()" type="submit" class="btn btn-primary">Save</button>
+    <button ng-click="categories_edit.remove()" type="submit" class="btn btn-danger">Delete</button>
+  </form>
+
+</div>

@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-default pull-right" ui-sref="admin.categories_edit">Add Category</button>
+
+<h1>Categories</h1>
+<hr>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="categories in categories.categories">{{categories.name}} <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.categories_edit({ id: categories.id })">Edit</button></li>
+</ul>

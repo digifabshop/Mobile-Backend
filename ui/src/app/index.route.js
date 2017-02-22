@@ -93,6 +93,30 @@
         controller: 'AssetsEditController',
         controllerAs: 'assets_edit'
       })
+      .state('admin.tags', {
+        url: '/tags',
+        templateUrl: 'app/main/tags.html',
+        controller: 'TagsController',
+        controllerAs: 'tags'
+      })
+      .state('admin.tags_edit', {
+        url: '/tags/edit/:id',
+        templateUrl: 'app/main/tags_edit.html',
+        controller: 'TagsEditController',
+        controllerAs: 'tags_edit'
+      })
+      .state('admin.categories', {
+        url: '/categories',
+        templateUrl: 'app/main/categories.html',
+        controller: 'CategoriesController',
+        controllerAs: 'categories'
+      })
+      .state('admin.categories_edit', {
+        url: '/categories/edit/:id',
+        templateUrl: 'app/main/categories_edit.html',
+        controller: 'CategoriesEditController',
+        controllerAs: 'categories_edit'
+      })
       ;
 
       RestangularProvider.addResponseInterceptor(function (data, operation, what, url, response, deferred) {

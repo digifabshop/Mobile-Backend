@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-default pull-right" ui-sref="admin.tags_edit">Add Tag</button>
+
+<h1>Tags</h1>
+<hr>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="tag in tags.tags">{{tag.name}} <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.tags_edit({ id: tag.id })">Edit</button></li>
+</ul>
