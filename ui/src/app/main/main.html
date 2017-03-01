@@ -10,16 +10,16 @@
 
   <div ui-view></div>
 
-	<div bc-flickity="" id="carousel" >
-  	<figure class="demo__slide" data-ng-repeat="asset in main.assets">
-			<img data-ng-src="{{ asset.url }}" alt="" />
-		</figure>
-	</div>
-
-<!-- Define the previous button (optional): -->
-<button bc-flickity-previous bc-flickity-id="prev" >Previous</button>
-
-<!-- Define the next button (optional): -->
-<button bc-flickity-next bc-flickity-id="next">Next</button>
+  <div style="height: 305px">
+    <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+      <div uib-slide ng-repeat="slide in slides track by slide.id" index="$index">
+        <img ng-src="{{slide.url}}" style="margin:auto;">
+        <div class="carousel-caption">
+          <h4>Slide {{slide.id}}</h4>
+          <p>{{slide.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

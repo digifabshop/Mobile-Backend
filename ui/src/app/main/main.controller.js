@@ -6,18 +6,24 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(Restangular, config) {
+  function MainController($scope, Restangular, config) {
 
     var vm = this;
+    $scope.active = 0;
+    $scope.myInterval = 2000;
+    $scope.noWrapSlides = false;
+    $scope.slides = [];
 
     Restangular.all('assets').getList({visible: 1}).then(function(assets){
       assets.forEach(function(asset) {
-        asset.url = config.url(asset.url)
+        asset.image = config.url(asset.url);
+        $scope.slides.push({
+          id: $scope.slides.length + 1,
+          url: asset.image
+        });
       })
-      console.log(assets)
       vm.assets = assets;
     });
-
 
   }
 })();
