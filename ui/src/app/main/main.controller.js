@@ -6,19 +6,18 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(Restangular) {
+  function MainController(Restangular, config) {
 
     var vm = this;
 
-    Restangular.all('photos').getList().then(function(photos){
-      vm.photos = photos;
+    Restangular.all('assets').getList({visible: 1}).then(function(assets){
+      assets.forEach(function(asset) {
+        asset.url = config.url(asset.url)
+      })
+      console.log(assets)
+      vm.assets = assets;
     });
 
-    vm.save = function() {
-      Restangular.all('assets').post($scope.asset).then(function(res){
-        alert("saved!");
-      });
-    }
 
   }
 })();
