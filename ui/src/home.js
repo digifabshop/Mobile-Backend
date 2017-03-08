@@ -1,6 +1,6 @@
 $(function() {
 
-  var base = 'http://localhost/api/'
+  var base = window.location.protocol + '//' + window.location.hostname + '/api/'
 
   $.getJSON(base + 'assets?visible=1', function(r) {
     console.log(r)
