@@ -9,38 +9,38 @@
   function routerConfig($stateProvider, $urlRouterProvider, RestangularProvider) {
 
     $stateProvider
-      .state('home', {
-        url: '',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      })
-      .state('home.menu', {
-        url: '/menu',
-        templateUrl: 'app/main/menu.html',
-        controller: 'MenuController',
-        controllerAs: 'menu'
-      })
-      .state('home.explorer', {
-        url: '/explorer',
-        templateUrl: 'app/main/explorer.html',
-        controller: 'ExplorerController',
-        controllerAs: 'explorer'
-      })
-      .state('home.map', {
-        url: '/map',
-        templateUrl: 'app/main/maps.html',
-        controller: 'MapsController',
-        controllerAs: 'map'
-      })
-      .state('home.project', {
-        url: '/project/:id',
-        templateUrl: 'app/main/project.html',
-        controller: 'ProjectController',
-        controllerAs: 'project'
-      })
+      // .state('home', {
+      //   url: '',
+      //   templateUrl: 'app/main/main.html',
+      //   controller: 'MainController',
+      //   controllerAs: 'main'
+      // })
+      // .state('home.menu', {
+      //   url: '/menu',
+      //   templateUrl: 'app/main/menu.html',
+      //   controller: 'MenuController',
+      //   controllerAs: 'menu'
+      // })
+      // .state('home.explorer', {
+      //   url: '/explorer',
+      //   templateUrl: 'app/main/explorer.html',
+      //   controller: 'ExplorerController',
+      //   controllerAs: 'explorer'
+      // })
+      // .state('home.map', {
+      //   url: '/map',
+      //   templateUrl: 'app/main/maps.html',
+      //   controller: 'MapsController',
+      //   controllerAs: 'map'
+      // })
+      // .state('home.project', {
+      //   url: '/project/:id',
+      //   templateUrl: 'app/main/project.html',
+      //   controller: 'ProjectController',
+      //   controllerAs: 'project'
+      // })
       .state('admin', {
-        url: '/admin',
+        url: '',
         templateUrl: 'app/main/admin.html',
         controller: 'AdminController',
         controllerAs: 'admin'
@@ -135,7 +135,7 @@
         return extractedData;
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('');
   }
 
 })();
