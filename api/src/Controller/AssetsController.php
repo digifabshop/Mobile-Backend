@@ -10,6 +10,11 @@ use App\Controller\AppController;
  */
 class AssetsController extends AppController
 {
+
+    public function beforeFilter(\Cake\Event\Event $event) {
+        $this->Crud->listener('relatedModels')->relatedModels(true);
+    }
+
     function upload() {
         $ext  = explode('/', $this->request->data['file']['type']);
         $name = uniqid() . '.' . $ext[1];

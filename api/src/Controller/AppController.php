@@ -58,6 +58,7 @@ class AppController extends Controller
         $this->Crud->addListener('Crud.Api');
         $this->Crud->addListener('Crud.ApiPagination');
         $this->Crud->addListener('Crud.Search');
+        $this->Crud->addListener('relatedModels', 'Crud.RelatedModels');
 
         $this->response->cors($this->request)
         ->allowOrigin(['*'])
