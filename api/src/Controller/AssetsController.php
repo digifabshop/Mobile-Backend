@@ -12,7 +12,8 @@ class AssetsController extends AppController
 {
 
     public function beforeFilter(\Cake\Event\Event $event) {
-        $this->Crud->listener('relatedModels')->relatedModels(true);
+        parent::beforeFilter($event);
+        $this->Crud->listener('relatedModels')->relatedModels(['AssetTypes', 'Projects'], 'index');
     }
 
     function upload() {
