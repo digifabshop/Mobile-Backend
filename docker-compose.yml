@@ -16,7 +16,8 @@ api:
   volumes:
     - /etc/localtime:/etc/localtime:ro
     - /etc/resolv.conf:/etc/resolv.conf:ro
-    - ./ui/dist:/var/www/html
+    - ./ui:/var/www/html
+    - ./admin/dist:/var/www/html/admin
     - ./api:/var/www/html/api
 mysql:
   image: mysql:latest
