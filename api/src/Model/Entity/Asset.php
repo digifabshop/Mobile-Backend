@@ -8,14 +8,18 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $project_id
- * @property string $type
+ * @property int $asset_type_id
  * @property string $description
+ * @property int $width
+ * @property int $height
  * @property bool $in_progress
- * @property bool $hidden
+ * @property bool $visible
  * @property string $credit_name
  * @property string $credit_url
+ * @property string $url
  *
  * @property \App\Model\Entity\Project $project
+ * @property \App\Model\Entity\AssetType $asset_type
  */
 class Asset extends Entity
 {

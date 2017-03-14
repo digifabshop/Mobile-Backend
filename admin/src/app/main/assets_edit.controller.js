@@ -28,6 +28,10 @@
 
     vm.boolOptions = [{ id: false, name: 'No'}, { id: true, name: 'Yes' }];
 
+    Restangular.all('tags').getList().then(function(tags){
+      vm.tags = tags;
+    });
+
     if ($state.params.id) {
       Restangular.one('assets', $state.params.id).get().then(function(asset){
         vm.asset = asset;

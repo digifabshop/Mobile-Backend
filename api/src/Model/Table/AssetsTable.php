@@ -10,6 +10,8 @@ use Cake\Validation\Validator;
  * Assets Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Projects
+ * @property \Cake\ORM\Association\BelongsTo $AssetTypes
+ * @property \Cake\ORM\Association\BelongsToMany $Tags
  *
  * @method \App\Model\Entity\Asset get($primaryKey, $options = [])
  * @method \App\Model\Entity\Asset newEntity($data = null, array $options = [])
@@ -44,6 +46,11 @@ class AssetsTable extends Table
         $this->belongsTo('AssetTypes', [
             'foreignKey' => 'asset_type_id'
         ]);
+        $this->belongsToMany('Tags', [
+            'foreignKey' => 'asset_id',
+            'targetForeignKey' => 'tag_id',
+            'joinTable' => 'assets_tags'
+        ]);
     }
 
     /**
@@ -59,24 +66,32 @@ class AssetsTable extends Table
         //     ->allowEmpty('id', 'create');
         //
         // $validator
-        //     ->allowEmpty('type');
+        //     ->allowEmpty('description');
         //
         // $validator
-        //     ->allowEmpty('description');
+        //     ->integer('width')
+        //     ->allowEmpty('width');
+        //
+        // $validator
+        //     ->integer('height')
+        //     ->allowEmpty('height');
         //
         // $validator
         //     ->boolean('in_progress')
         //     ->allowEmpty('in_progress');
         //
         // $validator
-        //     ->boolean('hidden')
-        //     ->allowEmpty('hidden');
+        //     ->boolean('visible')
+        //     ->allowEmpty('visible');
         //
         // $validator
         //     ->allowEmpty('credit_name');
         //
         // $validator
         //     ->allowEmpty('credit_url');
+        //
+        // $validator
+        //     ->allowEmpty('url');
 
         return $validator;
     }
@@ -91,6 +106,7 @@ class AssetsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         // $rules->add($rules->existsIn(['project_id'], 'Projects'));
+        // $rules->add($rules->existsIn(['asset_type_id'], 'AssetTypes'));
 
         return $rules;
     }

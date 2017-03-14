@@ -25,7 +25,9 @@ class AssetsTableTest extends TestCase
      */
     public $fixtures = [
         'app.assets',
-        'app.projects'
+        'app.projects',
+        'app.clients',
+        'app.asset_types'
     ];
 
     /**

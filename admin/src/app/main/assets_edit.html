@@ -8,7 +8,7 @@
     <div ng-if="assets_edit.uploaded || assets_edit.asset.url">
       <div class="panel panel-default">
         <div class="panel-body">
-          <img ng-src="{{assets_edit.asset.absUrl}}">
+          <img width="500px" ng-src="{{assets_edit.asset.absUrl}}">
         </div>
       </div>
     </div>
@@ -19,6 +19,10 @@
         <input type="file" class="form-control" uploader="assets_edit.uploader" nv-file-select>
       </div>
     </div>
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
 
     <div ng-if="assets_edit.uploaded || assets_edit.asset.id">
 
@@ -36,6 +40,16 @@
         <label for="description">Description</label>
         <input ng-model="assets_edit.asset.description" type="text" class="form-control" id="description" placeholder="">
       </div>
+      <div class="form-group">
+        <label class="control-label">Tags</label>
+        <div>
+          <ui-select multiple sortable="true" ng-model="assets_edit.asset.tags" theme="select2" style="height:50px" class="form-control" title="Choose a tag">
+            <ui-select-match placeholder="Select or search a tag in the list...">{{$item.name}}</ui-select-match>
+            <ui-select-choices repeat="tag in assets_edit.tags | filter: $select.search">
+              <div ng-bind-html="tag.name | highlight: $select.search"></div>
+            </ui-select-choices>
+          </div>
+        </div>
       <div class="form-group">
         <label for="height">Height</label>
         <input ng-model="assets_edit.asset.height" type="text" class="form-control" id="height" placeholder="">
