@@ -160,7 +160,7 @@ li {
     }
 
 .slide .info {
-    margin: 12px;
+    margin: 0 4px 4px 4px;
     padding: 4px 6px 3px;
     width: intrinsic;
     background-color: #000;
@@ -181,8 +181,8 @@ li {
     }
 
 .slide .info.photographer {
-    background-image: url(images/camera.svg);
-    padding-left: 24px;
+    /*background-image: url(images/camera.svg);
+    padding-left: 24px;*/
     }
 
 /* Hiding top and bottom bar once the page has been loaded for a moment */
