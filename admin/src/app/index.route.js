@@ -94,13 +94,13 @@
         controllerAs: 'assets_edit'
       })
       .state('admin.tags', {
-        url: '/tags',
+        url: '/tags/:id',
         templateUrl: 'app/main/tags.html',
         controller: 'TagsController',
         controllerAs: 'tags'
       })
       .state('admin.tags_edit', {
-        url: '/tags/edit/:id',
+        url: '/tags/edit/:id?parent_id',
         templateUrl: 'app/main/tags_edit.html',
         controller: 'TagsEditController',
         controllerAs: 'tags_edit'

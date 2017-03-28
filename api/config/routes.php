@@ -50,6 +50,8 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+    $routes->connect('/tags/:id/path', ['controller' => 'tags', 'action' => 'path'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/tags/:id/children', ['controller' => 'tags', 'action' => 'children'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/assets/upload', ['controller' => 'assets', 'action' => 'upload']);
 
     /**
@@ -58,7 +60,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->resources('Assets');
     $routes->resources('AssetTypes');
-    $routes->resources('Categories');
     $routes->resources('Clients');
     $routes->resources('Photos');
     $routes->resources('Posts');

@@ -36,6 +36,7 @@ class TagsTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
+        $this->addBehavior('Tree');
         $this->addBehavior('Search.Search');
 
         $this->hasMany('ImagesTags', [

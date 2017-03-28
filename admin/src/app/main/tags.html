@@ -1,8 +1,12 @@
-<button type="button" class="btn btn-default pull-right" ui-sref="admin.tags_edit">Add Tag</button>
+<button type="button" class="btn btn-default pull-right" ui-sref="admin.tags_edit({ parent_id: tags.current.id })">Add Tag</button>
 
 <h1>Tags</h1>
 <hr>
 
+<ol class="breadcrumb">
+  <li ng-repeat="node in tags.nodes"><a ui-sref="admin.tags({ id: node.id })">{{node.name}}</a></li>
+</ol>
+
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="tag in tags.tags">{{tag.name}} <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.tags_edit({ id: tag.id })">Edit</button></li>
+  <li class="list-group-item" ng-repeat="tag in tags.tags | orderBy:'+name'"><a ui-sref="admin.tags({ id: tag.id })">{{tag.name}}</a> <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.tags_edit({ id: tag.id })">Edit</button></li>
 </ul>
