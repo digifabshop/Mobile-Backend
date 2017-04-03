@@ -1,0 +1,45 @@
+/* CSS RESET - Jack Turner style, few enough rules you can grasp it in your mindbrain */
+* {
+    margin:             0;
+    padding:            0;
+    }
+  
+img {
+    border:             none;
+    vertical-align:     middle;
+    }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight:        normal;
+    }
+
+html {
+    box-sizing:         border-box;
+    }
+
+*, *:before, *:after {
+    box-sizing:         inherit;
+    }
+
+/* CUSTOM FONTS */
+@font-face{
+    font-family:"DistrictLight";
+    src:url("../webfonts/1197218/f1b03e62-e14d-462e-a950-46bd7d18c41a.eot?#iefix");
+    src:url("../webfonts/1197218/f1b03e62-e14d-462e-a950-46bd7d18c41a.eot?#iefix") format("eot"),url("../webfonts/1197218/7b5c459d-cc6b-475f-b95d-53cd018cd58c.woff2") format("woff2"),url("../webfonts/1197218/7660ed30-5d43-4ac0-b909-9b17a2880503.woff") format("woff"),url("../webfonts/1197218/451034b7-16d8-4990-9604-49cc904e7fec.ttf") format("truetype");
+    }
+@font-face{
+    font-family:"DistrictLight Italic";
+    src:url("../webfonts/1197221/0defd818-a00d-4941-b87e-dc5faf0651a2.eot?#iefix");
+    src:url("../webfonts/1197221/0defd818-a00d-4941-b87e-dc5faf0651a2.eot?#iefix") format("eot"),url("../webfonts/1197221/bda9057f-e414-4a2b-866e-04e8c8b87e62.woff2") format("woff2"),url("../webfonts/1197221/d9513291-36ec-4f06-9fd5-da06e6e10e73.woff") format("woff"),url("../webfonts/1197221/ee6b731f-df73-4cb4-bbec-e208bcdc4568.ttf") format("truetype");
+    }
+@font-face{
+    font-family:"District Pro";
+    src:url("../webfonts/1197230/dd8d7779-fea4-47eb-aa62-c065d7f7ecc5.eot?#iefix");
+    src:url("../webfonts/1197230/dd8d7779-fea4-47eb-aa62-c065d7f7ecc5.eot?#iefix") format("eot"),url("../webfonts/1197230/f076b48a-e46f-4472-bc33-f5698ad66181.woff2") format("woff2"),url("../webfonts/1197230/41ce222a-5b3d-42be-835b-58557fb62369.woff") format("woff"),url("../webfonts/1197230/3eabc3b8-ea91-4257-bfc5-2cdffade2e56.ttf") format("truetype");
+    }
+@font-face{
+    font-family:"DistrictDemi";
+    src:url("../webfonts/1197236/0c9a2d55-b343-4f68-bb82-014c58073105.eot?#iefix");
+    src:url("../webfonts/1197236/0c9a2d55-b343-4f68-bb82-014c58073105.eot?#iefix") format("eot"),url("../webfonts/1197236/da39a129-6beb-4193-a26a-5441c08a64cc.woff2") format("woff2"),url("../webfonts/1197236/adb35b28-b161-4115-8acc-b26ad71562b0.woff") format("woff"),url("../webfonts/1197236/37c141ed-74d4-4e1c-90c8-78f4e98fadc9.ttf") format("truetype");
+    }
+
