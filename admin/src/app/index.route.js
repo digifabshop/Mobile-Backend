@@ -97,13 +97,41 @@
         url: '/tags/:id',
         templateUrl: 'app/main/tags.html',
         controller: 'TagsController',
-        controllerAs: 'tags'
+        controllerAs: 'tags',
+        resolve: {
+          tags: function($stateParams, Restangular) {
+            return Restangular.one('tags/' + $stateParams.id + '/children').get().then(function(tags){
+              return tags;
+            });
+          },
+          nodes: function($stateParams, Restangular) {
+            return Restangular.one('tags/' + $stateParams.id + '/path').get().then(function(nodes){
+              return nodes;
+            });
+          }
+        }
       })
       .state('admin.tags_edit', {
         url: '/tags/edit/:id?parent_id',
         templateUrl: 'app/main/tags_edit.html',
         controller: 'TagsEditController',
-        controllerAs: 'tags_edit'
+        controllerAs: 'tags_edit',
+        resolve: {
+          tags: function($stateParams, Restangular) {
+            return Restangular.all('tags').getList().then(function(tags){
+              return tags;
+            });
+          },
+          tag: function($stateParams, Restangular) {
+            if ($stateParams.id) {
+              return Restangular.one('tags', $stateParams.id).get().then(function(tag){
+                return tag;
+              });
+            } else {
+              return {};
+            }
+          }
+        }
       })
       .state('admin.categories', {
         url: '/categories',

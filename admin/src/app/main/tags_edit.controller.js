@@ -6,23 +6,14 @@
     .controller('TagsEditController', TagsEditController);
 
   /** @ngInject */
-  function TagsEditController($state, Restangular) {
+  function TagsEditController($state, Restangular, tags, tag) {
 
     var vm = this;
+    vm.tag = tag;
+    vm.tags = tags;
 
-    vm.tag = {};
-
-    Restangular.all('tags').getList().then(function(tags){
-      vm.tags = tags;
-      vm.parent = _.find(vm.tags, { id: +$state.params.parent_id });
-      vm.tag.parent_id = _.find(vm.tags, { id: +$state.params.parent_id }).id;
-      if ($state.params.id) {
-        Restangular.one('tags', $state.params.id).get().then(function(tag){
-          vm.tag = tag;
-          vm.parent = _.find(vm.tags, { id: tag.parent_id });
-        });
-      }
-    });
+    vm.tag.parent_id = _.find(vm.tags, { id: +$state.params.parent_id }).id;
+    vm.parent = _.find(vm.tags, { id: +$state.params.parent_id });
 
     vm.remove = function() {
       if (confirm('Are you sure you want to delete?')) {
