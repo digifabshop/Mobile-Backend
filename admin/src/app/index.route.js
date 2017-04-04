@@ -118,7 +118,7 @@
         controllerAs: 'tags_edit',
         resolve: {
           tags: function($stateParams, Restangular) {
-            return Restangular.all('tags').getList().then(function(tags){
+            return Restangular.all('tags').getList({ limit: 10000 }).then(function(tags){
               return tags;
             });
           },
