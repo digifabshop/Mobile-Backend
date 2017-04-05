@@ -1,24 +1,116 @@
-/* margins on section
-margin: 0 25px */
+#logo {
+    position: absolute;
+    top: 6px;
+    left: 9px;
+}
 
 /* burger
 16px wide w/ 3px stroke
 4px between burger elements */
+#hamburger {
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    width: 16px;
+    height: 19px;
+    background-color: #000;
+}
 
-/* "PROJECT" and "IMAGES" text
-caps #8D8D8D 12pt District Pro */
+#explorer {
+    margin: 60px 25px 25px;
+    font-family: DistrictMedium, Times;
+    font-size: 12px;
+    line-height: 14px;
+    -webkit-font-smoothing: antialiased;
+}
 
-/* divider
-#8D8D8D */
 
-/* project name
-caps #000 12pt DistrictMedium */
+#explorer-labels {
+    position: relative;
+    font-family: DistrictLight, Times;
+    color: #8D8D8D;
+    text-transform: uppercase;
+    border-bottom: 0.25px solid #8D8D8D;
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+}
 
-/* images number
-#000 35pt  DistrictDemi */
+#images-label {
+    position: absolute;
+    right: 0;
+}
 
-/* "Search"
-#E0E0E0 23pt District Pro */
+#explorer-info {
+    position: relative;
+}
+
+#project-address {
+    padding-top: 3px;
+    text-transform: uppercase;
+}
+
+#images-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: DistrictDemi, Times;
+    font-size: 35px;
+    line-height: 1;
+}
+
+#filtering {
+    margin-top: 30px;
+}
+
+#search-label {
+    color: #E0E0E0;
+    font-size: 23px;
+    font-family: DistrictLight, Times;
+    border-bottom: 0.25px solid #8D8D8D;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.hide,
+.expanded {
+    display: none;
+}
+
+.filter {
+    position: relative;
+    border-top: 0.25px solid #8D8D8D;
+    padding: 2px 0;
+    margin: 8px 0;
+}
+
+.filter-heading {
+    margin: 2px 0;
+    text-transform: uppercase;
+}
+
+.filter-info {
+    margin: 1px 0;
+    color: #8D8D8D;
+    font-family: DistrictLight, Times;
+}
+
+.filter-toggle {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    width: 10px;
+    height: 5px;
+    background: transparent url(../images/triangle-black-down.svg) 0 0 no-repeat;
+    transition: all 200ms ease;
+}
+
+.show-expanded .filter-toggle {
+    transform: rotate(180deg);
+}
+
+.show-expanded .expanded {
+    /*display: block;*/
+}
 
 /* tag bubble (light)
 25px tall
@@ -30,12 +122,6 @@ caps #000 12pt DistrictMedium */
 4px radius #000 background no  stroke
 #FFF 15pt DistrictLight */
 
-/* section headings
-caps #000 12pt District Pro */
-
-/* section tag info
-#8D8D8D 12pt DistrictLight */
-
 /* thick x's
 15.65px square */
 
@@ -44,4 +130,3 @@ caps #000 12pt District Pro */
 
 /* triangles
 10px by 5 */
-
