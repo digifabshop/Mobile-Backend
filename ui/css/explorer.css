@@ -71,10 +71,11 @@
     margin-bottom: 8px;
 }
 
-.hide,
-.expanded {
+body .hide {
     display: none;
 }
+
+
 
 .filter {
     position: relative;
@@ -84,6 +85,17 @@
 }
 
 .filter-heading {
+    cursor: pointer;
+    -moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.filter-name {
     margin: 2px 0;
     text-transform: uppercase;
 }
@@ -108,25 +120,65 @@
     transform: rotate(180deg);
 }
 
-.show-expanded .expanded {
-    /*display: block;*/
+body .expanded {
+    height: 0;
+    transition: all 200ms ease;
+    overflow: hidden;
 }
 
-/* tag bubble (light)
-25px tall
-4px radius #8D8D8D 1px stroke
-#8D8D8D 15pt DistrictLight */
+.x {
+    display: inline-block;
+    background: transparent url(../images/x-quarter-px.svg) 0 0 no-repeat;
+    width: 14.78px;
+    height: 13.96px;
+}
 
-/* tag buble (dark)
-25px tall
-4px radius #000 background no  stroke
-#FFF 15pt DistrictLight */
+#clear-all-filters.x {
+    display: inline-block;
+    background: transparent url(../images/x-one-px.svg) 0 0 no-repeat;
+    width: 15.65px;
+    height: 14.78px;
+    margin-right: 22px;
+}
 
-/* thick x's
-15.65px square */
+.tag {
+    display: inline-block;
+    position: relative;
+    color: #8D8D8D;
+    background-color: #FFF;
+    border: 1px solid #8D8D8D;
+    padding: 3px 3px 4px;
+    margin: 3px 2px;
+    font-family: DistrictLight, Times;
+    font-size: 15px;
+    line-height: 1;
+    border-radius: 4px;
+}
 
-/* thin x's
-14.78px square */
+.tag .x {
+    margin: 1px 3px 0 5px;
+}
 
-/* triangles
-10px by 5 */
+.tag .triangle {
+    display: inline-block;
+    vertical-align: 10%;
+    width: 10px;
+    height: 5px;
+    margin-left: 3px;
+    margin-right: 2px;
+}
+
+.tag.parent {
+    color: #FFF;
+    background-color: #000;
+    border: 1px solid #000;
+}
+
+.tag.parent .triangle {
+    background: transparent url(../images/triangle-white-down.svg) 0 0 no-repeat;
+    transition: all 200ms ease;
+}
+
+.tag.parent.active .triangle {
+    transform: rotate(180deg);
+}
