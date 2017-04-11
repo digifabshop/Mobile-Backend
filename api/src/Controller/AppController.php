@@ -29,6 +29,11 @@ class AppController extends Controller
 {
     use \Crud\Controller\ControllerTrait;
 
+    public $paginate = [
+        'limit' => 1000000,
+        'maxLimit' => 1000000
+    ];
+
     /**
      * Initialization hook method.
      *
