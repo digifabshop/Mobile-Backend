@@ -26,7 +26,8 @@
       vm.asset.absUrl = config.url(response.url);
     }
 
-    vm.boolOptions = [{ id: false, name: 'No'}, { id: true, name: 'Yes' }];
+    vm.boolOptions = [{ id: null, name: 'No'}, { id: true, name: 'Yes' }];
+    vm.imageTypes = [{ id: 'in_progress', name: 'In Progress'}, { id: 'finished', name: 'Finished' }];
 
     Restangular.all('tags').getList().then(function(tags){
       vm.tags = tags;

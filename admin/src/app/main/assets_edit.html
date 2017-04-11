@@ -50,35 +50,33 @@
             </ui-select-choices>
           </div>
         </div>
-      <div class="form-group">
-        <label for="height">Height</label>
-        <input ng-model="assets_edit.asset.height" type="text" class="form-control" id="height" placeholder="">
       </div>
       <div class="form-group">
-        <label for="width">Width</label>
-        <input ng-model="assets_edit.asset.width" type="text" class="form-control" id="width" placeholder="">
+        <label for="in_progress">Image Type</label>
+        <select class="form-control" ng-model="assets_edit.asset.image_type" ng-options="bool.id as bool.name for bool in assets_edit.imageTypes"></select>
       </div>
       <div class="form-group">
-        <label for="credit_name">Credit Name</label>
-        <input ng-model="assets_edit.asset.credit_name" type="text" class="form-control" id="credit_name" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="credit_url">Credit URL</label>
-        <input ng-model="assets_edit.asset.credit_url" type="text" class="form-control" id="credit_url" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="in_progress">In Progress</label>
-        <select class="form-control" ng-model="assets_edit.asset.in_progress" ng-options="bool.id as bool.name for bool in assets_edit.boolOptions"></select>
-      </div>
-      <div class="form-group">
-        <label for="visible">Visible</label>
+        <label for="visible">Visible on homepage</label>
         <select class="form-control" ng-model="assets_edit.asset.visible" ng-options="bool.id as bool.name for bool in assets_edit.boolOptions"></select>
+      </div>
+      <div class="form-group">
+        <label for="credit_name">Description 1</label>
+        <div text-angular ng-model="assets_edit.asset.description1"></div>
+      </div>
+      <div class="form-group">
+        <label for="credit_url">Description 2</label>
+        <div text-angular ng-model="assets_edit.asset.description2"></div>
+      </div>
+      <div class="form-group">
+        <label for="credit_url">Description 3</label>
+        <div text-angular ng-model="assets_edit.asset.description3"></div>
+      </div>
+      <div class="form-group">
+        <label for="credit_url">Description 4</label>
+        <div text-angular ng-model="assets_edit.asset.description4"></div>
       </div>
       <button ng-click="assets_edit.save()" type="submit" class="btn btn-primary">Save</button>
       <button ng-click="assets_edit.remove()" type="submit" class="btn btn-danger">Delete</button>
-
     </div>
-
   </form>
-
 </div>
