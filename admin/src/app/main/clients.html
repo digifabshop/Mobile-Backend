@@ -4,5 +4,5 @@
 <hr>
 
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="client in clients.clients">{{client.name}} <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.clients_edit({ id: client.id })">Edit</button></li>
+  <li class="list-group-item" ng-repeat="client in clients.clients | orderBy:'name'">{{client.name}} <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.clients_edit({ id: client.id })">Edit</button></li>
 </ul>
