@@ -80,16 +80,14 @@ body .hide {
 .filter {
     position: relative;
     border-top: 0.25px solid #8D8D8D;
-    padding: 2px 0;
-    margin: 8px 0;
 }
 
 .filter-heading {
+    padding-top: 4px;
+    padding-bottom: 10px;
     cursor: pointer;
     -moz-user-select: -moz-none;
     -moz-user-select: none;
-    -o-user-select: none;
-    -khtml-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -153,6 +151,12 @@ body .expanded {
     font-size: 15px;
     line-height: 1;
     border-radius: 4px;
+    cursor: pointer;
+    -moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .tag .x {
