@@ -53,6 +53,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/tags/:id/path', ['controller' => 'tags', 'action' => 'path'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/tags/:id/children', ['controller' => 'tags', 'action' => 'children'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/assets/upload', ['controller' => 'assets', 'action' => 'upload']);
+    $routes->connect('/people/upload', ['controller' => 'people', 'action' => 'upload']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -62,6 +63,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->resources('AssetTypes');
     $routes->resources('Clients');
     $routes->resources('Photos');
+    $routes->resources('People');
     $routes->resources('Posts');
     $routes->resources('Projects');
     $routes->resources('Tags');

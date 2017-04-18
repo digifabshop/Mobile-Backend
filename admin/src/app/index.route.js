@@ -57,6 +57,18 @@
         controller: 'ClientsEditController',
         controllerAs: 'clients_edit'
       })
+      .state('admin.people', {
+        url: '/people',
+        templateUrl: 'app/main/people.html',
+        controller: 'PeopleController',
+        controllerAs: 'people'
+      })
+      .state('admin.people_edit', {
+        url: '/people/edit/:id',
+        templateUrl: 'app/main/people_edit.html',
+        controller: 'PeopleEditController',
+        controllerAs: 'people_edit'
+      })
       .state('admin.posts', {
         url: '/posts',
         templateUrl: 'app/main/posts.html',

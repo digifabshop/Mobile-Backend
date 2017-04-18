@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-default pull-right" ui-sref="admin.people_edit">Add People</button>
+
+<h1>People</h1>
+<hr>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="person in people.people | orderBy:'name'">{{person.name}} <button type="button" class="btn btn-default btn-xs pull-right" ui-sref="admin.people_edit({ id: person.id })">Edit</button></li>
+</ul>

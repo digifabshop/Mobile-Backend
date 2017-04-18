@@ -1,0 +1,40 @@
+<div class="container">
+
+  <h1>Edit Person</h1>
+  <hr>
+
+  <form>
+
+    <div ng-if="people_edit.uploaded || people_edit.person.url">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img width="500px" ng-src="{{people_edit.person.absUrl}}">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="form-group">
+        <label for="type">File</label>
+        <input type="file" class="form-control" uploader="people_edit.uploader" nv-file-select>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+
+    <div ng-if="people_edit.uploaded || people_edit.person.id">
+      <div class="form-group">
+        <label for="description">Name</label>
+        <input ng-model="people_edit.person.name" type="text" class="form-control" id="description" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="credit_name">Description</label>
+        <div text-angular ng-model="people_edit.person.description"></div>
+      </div>
+      <button ng-click="people_edit.save()" type="submit" class="btn btn-primary">Save</button>
+      <button ng-click="people_edit.remove()" type="submit" class="btn btn-danger">Delete</button>
+    </div>
+  </form>
+</div>
