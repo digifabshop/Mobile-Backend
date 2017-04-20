@@ -2,7 +2,8 @@ $( function() {
 
   var BASE = window.location.protocol + '//' + window.location.hostname + '/api/',
       TAGS = [],
-      $material_categories = $( '#material-categories' )
+      $material_categories = $( '#material-categories' ),
+      $content_categories = $( '#content-categories' )
 
   $( '.filter' ).on( 'click', '.filter-heading', function() {
 
@@ -14,17 +15,13 @@ $( function() {
     
   })
 
-  $.getJSON( BASE + 'tags', function( r ) {
+  var build_2_level_tag_filter = function( section_name, $section_el ) {
 
-    console.log(r.data)
-    TAGS = r.data
-
-    // Find the id of tag named "Materials"
-    var materials_id = _.find( TAGS, { 'name': 'Materials' } ).id
-    console.log( materials_id )
+    // Find the id of the tag with name of the section
+    var section_id = _.find( TAGS, { 'name': section_name } ).id
 
     // Collect all the tags that have that id as their parent, these are categories
-    var categories = _.filter( TAGS, { 'parent_id': materials_id } )
+    var categories = _.filter( TAGS, { 'parent_id': section_id } )
     console.log( categories )
 
     // For each one of the categories… 
@@ -36,7 +33,7 @@ $( function() {
       // Attach them to the DOM
       $material_categories.append( $cat_tag )
 
-      // Create a DOM element to contain the materials in that category
+      // Create a DOM element to contain the items in that category
       var $children_wrapper = $( '<div class="children hide" data-category-id="'+tag.id+'" />')
 
       var this_cat_id = tag.id
@@ -80,6 +77,14 @@ $( function() {
 
     } )
 
+  }
+
+  $.getJSON( BASE + 'tags', function( r ) {
+
+    TAGS = r.data
+
+    build_2_level_tag_filter( 'Materials', $material_categories )
+    build_2_level_tag_filter( 'Content', $content_categories )
 
   } )
 
