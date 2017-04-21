@@ -3,7 +3,8 @@ $( function() {
   var BASE = window.location.protocol + '//' + window.location.hostname + '/api/',
       TAGS = [],
       $materials_categories = $( '#materials-categories' ),
-      $content_categories = $( '#content-categories' )
+      $content_categories = $( '#content-categories' ),
+      $related_tags = $( '#related-tags' )
 
   $( '.filter' ).on( 'click', '.filter-heading', function() {
 
@@ -46,7 +47,7 @@ $( function() {
       _.forEach( children, function ( child ) {
         // Create DOM elements for these tags
         // Attach it to the container
-        $( '<span class="tag">' + child.name + '</span>' ).appendTo( $children_wrapper )
+        $( '<span class="tag">' + child.name + '</span>' ).appendTo( $children_wrapper ).appendTo( $related_tags )
       } )
 
       // Attach the container to the DOM
