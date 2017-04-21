@@ -2,6 +2,8 @@ $( function() {
 
   var BASE = window.location.protocol + '//' + window.location.hostname + '/api/',
       TAGS = [],
+      CLIENTS = [],
+      $client_tags = $( '#client-tags' ),
       $materials_categories = $( '#materials-categories' ),
       $content_categories = $( '#content-categories' ),
       $related_tags = $( '#related-tags' )
@@ -83,6 +85,16 @@ $( function() {
 
   }
 
+  var build_clients = function() {
+
+    _.forEach( CLIENTS, function( client ) {
+
+      $( '<span class="tag">' + client.name + '</span>' ).appendTo( $client_tags )
+
+    } )
+
+  }
+
   $.getJSON( BASE + 'tags', function( r ) {
 
     TAGS = r.data
@@ -91,5 +103,14 @@ $( function() {
     build_2_level_tag_filter( 'Content' )
 
   } )
+
+  $.getJSON( BASE + 'clients', function( r ) {
+
+    CLIENTS = r.data
+
+    build_clients()
+
+  } )
+
 
 } )
