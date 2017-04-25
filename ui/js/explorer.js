@@ -1,4 +1,62 @@
-$( function() {
+var Utils = function() {
+
+  var OBJ = {}
+
+  OBJ.base_url = function () {
+    return window.location.protocol + '//' + window.location.hostname + '/api/'    
+  }
+
+  return OBJ
+
+}()
+
+
+var SearchManager = function() {
+
+  var OBJ = {},
+      $pinned_tags = $( '#pinned-tags' )
+
+  OBJ.add_tag = function(name, id, type) {
+
+    $( this ).addClass()
+
+    var $el = $( '<span class="tag">'+name+'<span class="x"></span></span>' )
+
+    $el.data( {'name': name, 'id': id, 'type': type} )
+
+    $el.click( SearchManager.remove_tag )
+
+    $el.appendTo( $pinned_tags )
+
+    Filters.update_status()
+
+  }
+  
+  var remove_tag = function() {
+
+    var $this = $( this )
+
+    $('.tag[data-id="' + $this.data('id') + '"]').removeClass( 'hide' )
+
+    $this.remove()
+
+    Filters.update_status()
+
+  }
+  OBJ.remove_tag = remove_tag
+
+  $( '#clear-all-filters' ).click( function() {
+    $pinned_tags.find( '.tag' ).each( remove_tag )
+  } )
+
+  return OBJ
+
+}()
+
+
+var Filters = function() {
+
+  var OBJ = {}
 
   var BASE = window.location.protocol + '//' + window.location.hostname + '/api/',
       TAGS = [],
@@ -17,6 +75,41 @@ $( function() {
     $expanded.height( $filter.hasClass( 'show-expanded' ) ? $inner.height() : 0 )
     
   })
+
+  var update_status = function() {
+
+    $( '.filter' ).each( function() {
+
+      var $filter = $( this ),
+          $info = $filter.find( '.filter-info' ),
+          $tags = $filter.find( '.tag' ).not( '.parent' ),
+          $hidden = $tags.filter( '.hide' )
+
+      var str = $tags.length + ' tags'
+
+      if( $hidden.length ) {
+        str += ', ' + $hidden.length + ' pinned'
+      }
+
+      $info.text( str )
+
+    } )
+
+  }
+  OBJ.update_status = update_status
+
+  var build_tag = function (tag, type) {
+
+    var $tag = $( '<span class="tag" data-id="'+tag.id+'" data-tag-type="'+type+'">'+tag.name+'</span>' )
+
+    $tag.click( function() {
+      $tag.addClass( 'hide' )
+      SearchManager.add_tag( tag.name, tag.id, type)
+    } )
+
+    return $tag
+
+  }
 
   var build_2_level_tag_filter = function( section_name ) {
 
@@ -49,8 +142,8 @@ $( function() {
       _.forEach( children, function ( child ) {
         // Create DOM elements for these tags
         // Attach it to the container
-        $( '<span class="tag">' + child.name + '</span>' ).appendTo( $children_wrapper )
-        $( '<span class="tag">' + child.name + '</span>' ).appendTo( $related_tags )
+        build_tag(child, section_name_lower).appendTo( $children_wrapper )
+        build_tag(child, section_name_lower).appendTo( $related_tags )
       } )
 
       // Attach the container to the DOM
@@ -89,28 +182,56 @@ $( function() {
 
     _.forEach( CLIENTS, function( client ) {
 
-      $( '<span class="tag">' + client.name + '</span>' ).appendTo( $client_tags )
+      var $client = $( '<span class="tag" data-id="'+client.id+'" data-tag-type="client">'+client.name+'</span>' )
+
+      $client.click( function() {
+        $client.addClass( 'hide' )
+        SearchManager.add_tag( client.name, client.id, 'client')
+      } )
+
+      $client.appendTo( $client_tags )
 
     } )
 
   }
 
-  $.getJSON( BASE + 'tags', function( r ) {
+  var setup = function() {
 
-    TAGS = r.data
+    $( '#media-filter .tag').each( function() {
 
-    build_2_level_tag_filter( 'Materials' )
-    build_2_level_tag_filter( 'Content' )
+      var $this = $( this )
 
-  } )
+      $this.click( function() {
+        $this.addClass( 'hide' )
+        SearchManager.add_tag( $this.text(), $this.data('id'), 'media' )
+      } )
 
-  $.getJSON( BASE + 'clients', function( r ) {
-
-    CLIENTS = r.data
-
-    build_clients()
-
-  } )
+    } )
 
 
-} )
+    $.getJSON( BASE + 'tags', function( r ) {
+
+      TAGS = r.data
+
+      build_2_level_tag_filter( 'Materials' )
+      build_2_level_tag_filter( 'Content' )
+
+      update_status()
+    } )
+
+    $.getJSON( BASE + 'clients', function( r ) {
+
+      CLIENTS = r.data
+
+      build_clients()
+
+      update_status()
+    } )
+
+  }
+
+  setup()
+
+  return OBJ
+
+}()
