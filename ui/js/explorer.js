@@ -195,6 +195,32 @@ var Filters = function() {
 
   }
 
+  var build_project_information_types = function() {
+
+    var $types_button = $( '#types-button' ),
+        $types_container = $( '#types-container')
+
+    // Find the id of the tag with name of the section
+    var type_id = _.find( TAGS, { 'name': 'Type' } ).id
+
+    // Collect all the tags that have that id as their parent, these are categories
+    var types = _.filter( TAGS, { 'parent_id': type_id } )
+
+    // For each one of the types… 
+    _.forEach( types, function( tag ) {
+
+      build_tag(tag, 'type').appendTo( $types_container )
+
+    } )
+
+    $types_button.click( function() {
+      $types_container.toggleClass( 'hide' )
+      $types_button.toggleClass( 'active' )
+      $( '#project-information-filter .expanded' ).height( $( '#project-information-filter .inner').height() )
+    } )
+
+  }
+
   var setup = function() {
 
     $( '#media-filter .tag').each( function() {
@@ -215,6 +241,8 @@ var Filters = function() {
 
       build_2_level_tag_filter( 'Materials' )
       build_2_level_tag_filter( 'Content' )
+
+      build_project_information_types()
 
       update_status()
     } )
