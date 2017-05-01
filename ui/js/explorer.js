@@ -195,10 +195,15 @@ var Filters = function() {
 
   }
 
-  var build_project_information_types = function() {
+  var build_project_information = function() {
 
     var $types_button = $( '#types-button' ),
-        $types_container = $( '#types-container')
+        $types_container = $( '#types-container' )
+        $status_button = $( '#status-button' ),
+        $status_container = $( '#status-container' ),
+        $year_button = $( '#year-button' ),
+        $year_container = $( '#year-container' )
+
 
     // Find the id of the tag with name of the section
     var type_id = _.find( TAGS, { 'name': 'Type' } ).id
@@ -214,8 +219,47 @@ var Filters = function() {
     } )
 
     $types_button.click( function() {
-      $types_container.toggleClass( 'hide' )
-      $types_button.toggleClass( 'active' )
+      if( $types_button.hasClass( 'active' ) ) {
+        $types_button.removeClass( 'active' )
+        $status_button.removeClass( 'hide' )
+        $year_button.removeClass( 'hide' )
+        $types_container.addClass( 'hide' )
+      } else {
+        $types_button.addClass( 'active' )
+        $status_button.addClass( 'hide' )
+        $year_button.addClass( 'hide' )
+        $types_container.removeClass( 'hide' )
+      }
+      $( '#project-information-filter .expanded' ).height( $( '#project-information-filter .inner').height() )
+    } )
+
+    $status_button.click( function() {
+      if( $status_button.hasClass( 'active' ) ) {
+        $status_button.removeClass( 'active' )
+        $types_button.removeClass( 'hide' )
+        $year_button.removeClass( 'hide' )
+        $status_container.addClass( 'hide' )
+      } else {
+        $status_button.addClass( 'active' )
+        $types_button.addClass( 'hide' )
+        $year_button.addClass( 'hide' )
+        $status_container.removeClass( 'hide' )
+      }
+      $( '#project-information-filter .expanded' ).height( $( '#project-information-filter .inner').height() )
+    } )
+
+    $year_button.click( function() {
+      if( $year_button.hasClass( 'active' ) ) {
+        $year_button.removeClass( 'active' )
+        $types_button.removeClass( 'hide' )
+        $status_button.removeClass( 'hide' )
+        $year_container.addClass( 'hide' )
+      } else {
+        $year_button.addClass( 'active' )
+        $status_button.addClass( 'hide' )
+        $types_button.addClass( 'hide' )
+        $year_container.removeClass( 'hide' )
+      }
       $( '#project-information-filter .expanded' ).height( $( '#project-information-filter .inner').height() )
     } )
 
@@ -242,7 +286,7 @@ var Filters = function() {
       build_2_level_tag_filter( 'Materials' )
       build_2_level_tag_filter( 'Content' )
 
-      build_project_information_types()
+      build_project_information()
 
       update_status()
     } )
