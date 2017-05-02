@@ -62,22 +62,34 @@
     margin-top: 30px;
 }
 
+#current-filters {
+    min-height: 60px;
+    padding-bottom: 6px;
+}
+
 #search-label {
     color: #E0E0E0;
     font-size: 23px;
     font-family: DistrictLight, Times;
     border-bottom: 0.25px solid #8D8D8D;
     padding-bottom: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
 }
 
 body .hide {
     display: none;
 }
 
-#current-filters {
-    min-height: 28px;
+#active-tags-header {
+    text-transform: uppercase;
+    margin-bottom: 4px;
 }
+
+#clear-all-filters {
+    vertical-align: top;
+    margin-top: 8px;
+}
+
 
 .filter {
     position: relative;
@@ -86,7 +98,7 @@ body .hide {
 
 .filter-heading {
     padding-top: 4px;
-    padding-bottom: 10px;
+    padding-bottom: 6px;
     cursor: pointer;
     -moz-user-select: -moz-none;
     -moz-user-select: none;
@@ -124,6 +136,10 @@ body .expanded {
     height: 0;
     transition: all 200ms ease;
     overflow: hidden;
+}
+
+.expanded .inner {
+        font-size:0;
 }
 
 .x {
