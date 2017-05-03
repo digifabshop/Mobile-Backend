@@ -1,4 +1,62 @@
-$( function() {
+var Utils = function() {
+
+  var OBJ = {}
+
+  OBJ.base_url = function () {
+    return window.location.protocol + '//' + window.location.hostname + '/api/'    
+  }
+
+  return OBJ
+
+}()
+
+
+var SearchManager = function() {
+
+  var OBJ = {},
+      $pinned_tags = $( '#pinned-tags' )
+
+  OBJ.add_tag = function(name, id, type) {
+
+    $( this ).addClass()
+
+    var $el = $( '<span class="tag">'+name+'<span class="x"></span></span>' )
+
+    $el.data( {'name': name, 'id': id, 'type': type} )
+
+    $el.click( SearchManager.remove_tag )
+
+    $el.appendTo( $pinned_tags )
+
+    Filters.update_status()
+
+  }
+  
+  var remove_tag = function() {
+
+    var $this = $( this )
+
+    $('.tag[data-id="' + $this.data('id') + '"]').removeClass( 'hide' )
+
+    $this.remove()
+
+    Filters.update_status()
+
+  }
+  OBJ.remove_tag = remove_tag
+
+  $( '#clear-all-filters' ).click( function() {
+    $pinned_tags.find( '.tag' ).each( remove_tag )
+  } )
+
+  return OBJ
+
+}()
+
+
+var Filters = function() {
+
+  var OBJ = {}
 
   var BASE = window.location.protocol + '//' + window.location.hostname + '/api/',
       TAGS = [],
@@ -17,6 +75,63 @@ $( function() {
     $expanded.height( $filter.hasClass( 'show-expanded' ) ? $inner.height() : 0 )
     
   })
+
+  var alphabetize = function( tag_container ) {
+
+    var $container = $( tag_container ),
+        $tags = $container.children( '.tag' )
+
+    $tags.sort( function( a, b ) {
+      return ( $( b ).text() ) < ( $( a ).text() ) ? 1 : -1
+    } ).appendTo( $container )
+
+  }
+
+  var childrenize = function( tag_container ) {
+
+    var $container = $( tag_container ),
+        $tags = $container.children( '.tag' )
+
+    $tags.sort( function( a, b ) {
+      return ( $( b ).data( 'children' ) ) > ( $( a ).data( 'children' ) ) ? 1 : -1
+    } ).appendTo( $container )
+
+  }
+
+  var update_status = function() {
+
+    $( '.filter' ).each( function() {
+
+      var $filter = $( this ),
+          $info = $filter.find( '.filter-info' ),
+          $tags = $filter.find( '.tag' ).not( '.parent' ),
+          $hidden = $tags.filter( '.hide' )
+
+      var str = $tags.length + ' tags'
+
+      if( $hidden.length ) {
+        str += ', ' + $hidden.length + ' pinned'
+      }
+
+      $info.text( str )
+
+    } )
+
+  }
+  OBJ.update_status = update_status
+
+  var build_tag = function (tag, type) {
+
+    var $tag = $( '<span class="tag" data-id="'+tag.id+'" data-tag-type="'+type+'">'+tag.name+'</span>' )
+
+    $tag.click( function() {
+      $tag.addClass( 'hide' )
+      SearchManager.add_tag( tag.name, tag.id, type)
+    } )
+
+    return $tag
+
+  }
 
   var build_2_level_tag_filter = function( section_name ) {
 
@@ -49,13 +164,18 @@ $( function() {
       _.forEach( children, function ( child ) {
         // Create DOM elements for these tags
         // Attach it to the container
-        $( '<span class="tag">' + child.name + '</span>' ).appendTo( $children_wrapper )
-        $( '<span class="tag">' + child.name + '</span>' ).appendTo( $related_tags )
+        build_tag(child, section_name_lower).appendTo( $children_wrapper )
+        build_tag(child, section_name_lower).appendTo( $related_tags )
       } )
+
+      $cat_tag.data( 'children', children.length )
+      childrenize( $section_el )
 
       // Attach the container to the DOM
       $section_el.after( $children_wrapper )
       
+      alphabetize( $children_wrapper )
+
       // Attach click events to material categories to toggle visibilty of related container of children
       $cat_tag.on( 'click', function() {
         
@@ -89,28 +209,133 @@ $( function() {
 
     _.forEach( CLIENTS, function( client ) {
 
-      $( '<span class="tag">' + client.name + '</span>' ).appendTo( $client_tags )
+      var $client = $( '<span class="tag" data-id="'+client.id+'" data-tag-type="client">'+client.name+'</span>' )
 
+      $client.click( function() {
+        $client.addClass( 'hide' )
+        SearchManager.add_tag( client.name, client.id, 'client')
+      } )
+
+      $client.appendTo( $client_tags )
+
+    } )
+
+    alphabetize( $client_tags )
+
+
+  }
+
+  var build_project_information = function() {
+
+    var $types_button = $( '#types-button' ),
+        $types_container = $( '#types-container' )
+        $status_button = $( '#status-button' ),
+        $status_container = $( '#status-container' ),
+        $year_button = $( '#year-button' ),
+        $year_container = $( '#year-container' )
+
+
+    // Find the id of the tag with name of the section
+    var type_id = _.find( TAGS, { 'name': 'Type' } ).id
+
+    // Collect all the tags that have that id as their parent, these are categories
+    var types = _.filter( TAGS, { 'parent_id': type_id } )
+
+    // For each one of the types… 
+    _.forEach( types, function( tag ) {
+
+      build_tag(tag, 'type').appendTo( $types_container )
+
+    } )
+
+    $types_button.click( function() {
+      if( $types_button.hasClass( 'active' ) ) {
+        $types_button.removeClass( 'active' )
+        $status_button.removeClass( 'hide' )
+        $year_button.removeClass( 'hide' )
+        $types_container.addClass( 'hide' )
+      } else {
+        $types_button.addClass( 'active' )
+        $status_button.addClass( 'hide' )
+        $year_button.addClass( 'hide' )
+        $types_container.removeClass( 'hide' )
+      }
+      $( '#project-information-filter .expanded' ).height( $( '#project-information-filter .inner').height() )
+    } )
+
+    $status_button.click( function() {
+      if( $status_button.hasClass( 'active' ) ) {
+        $status_button.removeClass( 'active' )
+        $types_button.removeClass( 'hide' )
+        $year_button.removeClass( 'hide' )
+        $status_container.addClass( 'hide' )
+      } else {
+        $status_button.addClass( 'active' )
+        $types_button.addClass( 'hide' )
+        $year_button.addClass( 'hide' )
+        $status_container.removeClass( 'hide' )
+      }
+      $( '#project-information-filter .expanded' ).height( $( '#project-information-filter .inner').height() )
+    } )
+
+    $year_button.click( function() {
+      if( $year_button.hasClass( 'active' ) ) {
+        $year_button.removeClass( 'active' )
+        $types_button.removeClass( 'hide' )
+        $status_button.removeClass( 'hide' )
+        $year_container.addClass( 'hide' )
+      } else {
+        $year_button.addClass( 'active' )
+        $status_button.addClass( 'hide' )
+        $types_button.addClass( 'hide' )
+        $year_container.removeClass( 'hide' )
+      }
+      $( '#project-information-filter .expanded' ).height( $( '#project-information-filter .inner').height() )
     } )
 
   }
 
-  $.getJSON( BASE + 'tags', function( r ) {
+  var setup = function() {
 
-    TAGS = r.data
+    $( '#media-filter .tag').each( function() {
 
-    build_2_level_tag_filter( 'Materials' )
-    build_2_level_tag_filter( 'Content' )
+      var $this = $( this )
 
-  } )
+      $this.click( function() {
+        $this.addClass( 'hide' )
+        SearchManager.add_tag( $this.text(), $this.data('id'), 'media' )
+      } )
 
-  $.getJSON( BASE + 'clients', function( r ) {
-
-    CLIENTS = r.data
-
-    build_clients()
-
-  } )
+    } )
 
 
-} )
+    $.getJSON( BASE + 'tags', function( r ) {
+
+      TAGS = r.data
+
+      build_2_level_tag_filter( 'Materials' )
+      build_2_level_tag_filter( 'Content' )
+
+      alphabetize( '#related-tags' )
+
+      build_project_information()
+
+      update_status()
+    } )
+
+    $.getJSON( BASE + 'clients', function( r ) {
+
+      CLIENTS = r.data
+
+      build_clients()
+
+      update_status()
+    } )
+
+  }
+
+  setup()
+
+  return OBJ
+
+}()

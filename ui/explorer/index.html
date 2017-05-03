@@ -33,12 +33,9 @@
       <div id="search-label">Search</div>
 
       <div id="current-filters">
+        <div id="active-tags-header">Active Tags</div>
         <div id="clear-all-filters" class="x"></div>
-        <span id="pinned-tags">
-          <span class="tag">Mapos<span class="x"></span></span>
-          <span class="tag">AutoCAD<span class="x"></span></span>
-          <span class="tag">Photos<span class="x"></span></span>
-        </span>
+        <span id="pinned-tags"></span>
       </div>
 
       <div id="filters">
@@ -46,15 +43,15 @@
         <div id="media-filter" class="filter">
           <div class="filter-heading">
             <div class="filter-name">Media</div>
-            <div class="filter-info">3 tags, 1 pinned</div>
+            <div class="filter-info">&nbsp;</div>
             <div class="filter-toggle"></div>
           </div>
           <div class="expanded">
             <div class="inner">
-              <div class="tag hide">Photos</div>
-              <span class="tag">360˚ Image</span>
-              <span class="tag">Video</span>
-              <span class="tag">VR</span>
+              <div class="tag" data-id="media-photos" data-type="media">Photos</div>
+              <span class="tag" data-id="media-video" data-type="media">Video</span>
+              <span class="tag" data-id="media-vr" data-type="media">VR</span>
+              <span class="tag" data-id="media-360" data-type="media">360˚ Image</span>
             </div>
           </div>
         </div>
@@ -62,7 +59,7 @@
         <div id="client-filter" class="filter">
           <div class="filter-heading">
             <div class="filter-name">Client</div>
-            <div class="filter-info">15 tags</div>
+            <div class="filter-info">&nbsp;</div>
             <div class="filter-toggle"></div>
           </div>
           <div class="expanded">
@@ -75,7 +72,7 @@
         <div id="materials-filter" class="filter">
           <div class="filter-heading">
             <div class="filter-name">Material</div>
-            <div class="filter-info">73 tags</div>
+            <div class="filter-info">&nbsp;</div>
             <div class="filter-toggle"></div>
           </div>
           <div class="expanded">
@@ -88,7 +85,7 @@
         <div id="content-filter" class="filter">
           <div class="filter-heading">
             <div class="filter-name">Content</div>
-            <div class="filter-info">20 tags, 2 pinned</div>
+            <div class="filter-info">&nbsp;</div>
             <div class="filter-toggle"></div>
           </div>
           <div class="expanded">
@@ -98,15 +95,35 @@
           </div>
         </div>
 
-        <div id="statistics-filter" class="filter">
+        <div id="project-information-filter" class="filter">
           <div class="filter-heading">
-            <div class="filter-name">Information</div>
-            <div class="filter-info">3 tags</div>
+            <div class="filter-name">Project Information</div>
+            <div class="filter-info">&nbsp;</div>
             <div class="filter-toggle"></div>
           </div>
           <div class="expanded">
             <div class="inner">
-              TODO: Interface for this section of the explorer
+              <div id="types-button" class="tag parent" data-category-id="project-information-type">Type<span class="triangle"></span></div>
+              <div id="status-button" class="tag parent" data-category-id="project-information-status">Status<span class="triangle"></span></div>
+              <div id="year-button" class="tag parent" data-category-id="project-information-year">Year<span class="triangle"></span></div>
+              <div id="types-container" class="children hide" data-category-id="project-information-type"></div>
+              <div id="status-container" class="children hide" data-category-id="project-information-status">
+                <span class="tag" data-id="status-in-progress" data-tag-type="status">In-progress</span>
+                <span class="tag" data-id="status-completed" data-tag-type="status">Completed</span>
+              </div>
+              <div id="year-container" class="children hide" data-category-id="project-information-year">
+                <span class="tag" data-id="year-2007" data-tag-type="year">2007</span>
+                <span class="tag" data-id="year-2008" data-tag-type="year">2008</span>
+                <span class="tag" data-id="year-2009" data-tag-type="year">2009</span>
+                <span class="tag" data-id="year-2010" data-tag-type="year">2010</span>
+                <span class="tag" data-id="year-2011" data-tag-type="year">2011</span>
+                <span class="tag" data-id="year-2012" data-tag-type="year">2012</span>
+                <span class="tag" data-id="year-2013" data-tag-type="year">2013</span>
+                <span class="tag" data-id="year-2014" data-tag-type="year">2014</span>
+                <span class="tag" data-id="year-2015" data-tag-type="year">2015</span>
+                <span class="tag" data-id="year-2016" data-tag-type="year">2016</span>
+                <span class="tag" data-id="year-2017" data-tag-type="year">2017</span>
+              </div>
             </div>
           </div>
         </div>
@@ -114,7 +131,7 @@
         <div id="related-tags-filter" class="filter">
           <div class="filter-heading">
             <div class="filter-name">Related Tags</div>
-            <div class="filter-info">1,556 tags</div>
+            <div class="filter-info">&nbsp;</div>
             <div class="filter-toggle"></div>
           </div>
           <div class="expanded">
@@ -130,8 +147,8 @@
 
   </div>
 
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js" integrity="sha256-IyWBFJYclFY8Pn32bwWdSHmV4B9M5mby5bhPHEmeY8w=" crossorigin="anonymous"></script>
+  <script src="/js/lodash.min.js"></script>
+  <script src="/js/jquery-2.2.4.min.js"></script>
   <script src="/js/explorer.js"></script>
 
 </body>
