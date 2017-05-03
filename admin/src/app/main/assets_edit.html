@@ -45,7 +45,7 @@
         <div>
           <ui-select multiple sortable="true" ng-model="assets_edit.asset.tags" theme="select2" style="height:50px" class="form-control" title="Choose a tag">
             <ui-select-match placeholder="Select or search a tag in the list...">{{$item.name}}</ui-select-match>
-            <ui-select-choices repeat="tag in assets_edit.tags | filter: $select.search">
+            <ui-select-choices repeat="tag in assets_edit.tags | filter: $select.search | orderBy:'name'">
               <div ng-bind-html="tag.name | highlight: $select.search"></div>
             </ui-select-choices>
           </div>
