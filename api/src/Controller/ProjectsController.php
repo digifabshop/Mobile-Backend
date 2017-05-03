@@ -10,5 +10,9 @@ use App\Controller\AppController;
  */
 class ProjectsController extends AppController
 {
+    public function beforeFilter(\Cake\Event\Event $event) {
+        parent::beforeFilter($event);
+        $this->Crud->listener('relatedModels')->relatedModels(['Clients'], 'index');
+    }
 
 }

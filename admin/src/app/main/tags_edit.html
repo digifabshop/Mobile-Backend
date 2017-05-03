@@ -8,7 +8,7 @@
       <label for="description">Name</label>
       <input ng-model="tags_edit.tag.name" type="text" class="form-control" id="description" placeholder="">
     </div>
-    <div class="form-group">
+    <div style="display:none" class="form-group">
       <label for="description">Parent</label>
       <select class="form-control" ng-options="tag as tag.name for tag in tags_edit.tags track by tag.id" ng-model="tags_edit.parent"></select>
       <!-- <input ng-model="tags_edit.tag.parent_id" type="text" class="form-control" id="parent" placeholder=""> -->

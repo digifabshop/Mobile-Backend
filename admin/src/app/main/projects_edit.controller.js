@@ -6,7 +6,7 @@
     .controller('ProjectsEditController', ProjectsEditController);
 
   /** @ngInject */
-  function ProjectsEditController($state, Restangular) {
+  function ProjectsEditController($state, $filter, Restangular) {
 
     var vm = this;
 
@@ -31,6 +31,8 @@
     }
 
     vm.save = function() {
+      vm.project.start = $filter('date')(vm.project.start,'yyyy-MM-dd');
+      vm.project.end = $filter('date')(vm.project.end,'yyyy-MM-dd');
       if (!('id' in vm.project)) {
         Restangular.all('projects').post(vm.project).then(function(res){
           $state.go('admin.projects');

@@ -6,7 +6,7 @@
     .controller('AssetsEditController', AssetsEditController);
 
   /** @ngInject */
-  function AssetsEditController($state, config, Restangular, FileUploader) {
+  function AssetsEditController($state, $filter, config, Restangular, FileUploader) {
 
     var vm = this;
 
@@ -31,12 +31,14 @@
 
     Restangular.all('tags').getList().then(function(tags){
       vm.tags = tags;
+      vm.tags = $filter('orderBy')(vm.tags, 'name');
     });
 
     if ($state.params.id) {
       Restangular.one('assets', $state.params.id).get().then(function(asset){
         vm.asset = asset;
         vm.asset.absUrl = config.url(vm.asset.url);
+        vm.asset.tags = $filter('orderBy')(vm.asset.tags, 'name');
       });
     }
 

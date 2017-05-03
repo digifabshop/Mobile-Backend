@@ -18,6 +18,24 @@
       <input ng-model="projects_edit.project.address" type="text" class="form-control" id="name" placeholder="">
     </div>
     <div class="form-group">
+      <label for="start">Start</label>
+      <p class="input-group">
+        <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="projects_edit.project.start" is-open="popup1" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="popup1=1")><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="start">End</label>
+      <p class="input-group">
+        <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd"  ng-model="projects_edit.project.end" is-open="popup2" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="popup2=1")><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+    <div class="form-group">
       <label for="name">Latitude</label>
       <input ng-model="projects_edit.project.latitude" type="text" class="form-control" id="name" placeholder="">
     </div>
