@@ -76,6 +76,28 @@ var Filters = function() {
     
   })
 
+  var alphabetize = function( tag_container ) {
+
+    var $container = $( tag_container ),
+        $tags = $container.children( '.tag' )
+
+    $tags.sort( function( a, b ) {
+      return ( $( b ).text() ) < ( $( a ).text() ) ? 1 : -1
+    } ).appendTo( $container )
+
+  }
+
+  var childrenize = function( tag_container ) {
+
+    var $container = $( tag_container ),
+        $tags = $container.children( '.tag' )
+
+    $tags.sort( function( a, b ) {
+      return ( $( b ).data( 'children' ) ) > ( $( a ).data( 'children' ) ) ? 1 : -1
+    } ).appendTo( $container )
+
+  }
+
   var update_status = function() {
 
     $( '.filter' ).each( function() {
@@ -146,9 +168,14 @@ var Filters = function() {
         build_tag(child, section_name_lower).appendTo( $related_tags )
       } )
 
+      $cat_tag.data( 'children', children.length )
+      childrenize( $section_el )
+
       // Attach the container to the DOM
       $section_el.after( $children_wrapper )
       
+      alphabetize( $children_wrapper )
+
       // Attach click events to material categories to toggle visibilty of related container of children
       $cat_tag.on( 'click', function() {
         
@@ -192,6 +219,9 @@ var Filters = function() {
       $client.appendTo( $client_tags )
 
     } )
+
+    alphabetize( $client_tags )
+
 
   }
 
@@ -285,6 +315,8 @@ var Filters = function() {
 
       build_2_level_tag_filter( 'Materials' )
       build_2_level_tag_filter( 'Content' )
+
+      alphabetize( '#related-tags' )
 
       build_project_information()
 
