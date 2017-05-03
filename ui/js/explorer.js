@@ -14,7 +14,22 @@ var Utils = function() {
 var SearchManager = function() {
 
   var OBJ = {},
-      $pinned_tags = $( '#pinned-tags' )
+      $pinned_tags = $( '#pinned-tags' ),
+      $number = $( '#images-number' )
+
+  var comma_separator_number_step = $.animateNumber.numberStepFactories.separator( ',' )
+  var update_number = function() {
+    
+    var num = Math.ceil( Math.random() * 3000 )
+
+    $number.animateNumber( {
+      number: num,
+      numberStep: comma_separator_number_step
+    } )
+
+    // $number.html(num)
+
+  }
 
   OBJ.add_tag = function(name, id, type) {
 
@@ -29,6 +44,7 @@ var SearchManager = function() {
     $el.appendTo( $pinned_tags )
 
     Filters.update_status()
+    update_number()
 
   }
   
@@ -41,12 +57,26 @@ var SearchManager = function() {
     $this.remove()
 
     Filters.update_status()
+    update_number()
 
   }
   OBJ.remove_tag = remove_tag
 
   $( '#clear-all-filters' ).click( function() {
-    $pinned_tags.find( '.tag' ).each( remove_tag )
+
+    $pinned_tags.find( '.tag' ).each( function( i, el ) {
+
+      var $this = $( el )
+
+      $('.tag[data-id="' + $this.data('id') + '"]').removeClass( 'hide' )
+
+      $this.remove()
+
+    } )
+
+    Filters.update_status()
+    update_number()
+
   } )
 
   return OBJ
